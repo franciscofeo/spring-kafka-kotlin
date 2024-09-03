@@ -1,0 +1,38 @@
+spring:
+  kafka:
+    private:
+      bootstrap-servers: localhost:29091
+      properties:
+        security:
+          protocol: PLAINTEXT
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
+        retries: 5
+        acks: all
+        properties:
+          linger.ms: 50
+          max.block.ms: 120000
+      listener:
+        ack-mode: record
+        concurrency: 1
+        type: single
+        error:
+          retries: 3
+      consumer:
+        group-id: kafka-example
+        auto-offset-reset: latest
+        enable-auto-commit: false
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#        allow.auto.create.topics: true
+        properties:
+          max.poll.interval.ms: 3600000
+          max.poll.records: 5
+          session.timeout.ms: 60000
+          heartbeat.interval.ms: 3000
+        max-poll-records: 5
+      retry:
+        topic:
+          enabled: false
+      partitions: 1
