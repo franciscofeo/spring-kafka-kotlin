@@ -3,6 +3,7 @@ package com.franciscofeo.kotlinkafkaexample
 import com.franciscofeo.kotlinkafkaexample.kafka.BaseKafkaProducer.BaseMessage
 import com.franciscofeo.kotlinkafkaexample.entity.BaseEntity.BaseEvent
 import com.franciscofeo.kotlinkafkaexample.kafka.BaseKafkaProducer
+import com.franciscofeo.kotlinkafkaexample.kafka.PrivateKafkaProducer
 import mu.KotlinLogging
 import org.hibernate.event.spi.AbstractEvent
 import org.springframework.stereotype.Component
@@ -12,7 +13,7 @@ import java.util.*
 
 @Component
 class EventListener(
-    private val producer: BaseKafkaProducer,
+    private val producer: PrivateKafkaProducer,
 ) {
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, classes = [BaseEvent::class])

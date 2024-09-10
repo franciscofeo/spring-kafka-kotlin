@@ -33,6 +33,7 @@ class PrivateKafkaConfiguration(
         KafkaTemplate(privateProducerFactory()).apply {
             setKafkaAdmin(kafkaAdmin)
             setObservationEnabled(true)
+            isAllowNonTransactional = true
         }
 
     @Primary
