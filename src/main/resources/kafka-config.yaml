@@ -8,11 +8,13 @@ spring:
       producer:
         key-serializer: org.apache.kafka.common.serialization.StringSerializer
         value-serializer: org.apache.kafka.common.serialization.StringSerializer
-        retries: 5
+        retries: 15
         acks: all
         properties:
           linger.ms: 50
           max.block.ms: 120000
+          enable:
+            idempotence: false
       listener:
         ack-mode: record
         concurrency: 1
